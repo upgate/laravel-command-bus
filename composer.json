@@ -1,0 +1,22 @@
+{
+    "name": "upgate/laravel-command-bus",
+    "description": "Laravel Command Bus",
+    "keywords": [
+        "laravel",
+        "command bus"
+    ],
+    "license": "BSD-2-Clause",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/contracts": "^5.1",
+        "illuminate/support": "^5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Upgate\\LaravelCommandBus\\": "src"
+        }
+    }
+}
