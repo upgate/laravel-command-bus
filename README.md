@@ -1,5 +1,7 @@
 # Simple Command Bus for Laravel 5.x
 
+[![Build Status](https://travis-ci.org/upgate/laravel-command-bus.svg?branch=master)](https://travis-ci.org/upgate/laravel-command-bus)
+
 ## Setup
 
 1. `composer require upgate/laravel-command-bus`
