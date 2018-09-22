@@ -35,6 +35,15 @@ final class CommandBus
      */
     public function execute($command): void
     {
+        $this->executeSync($command);
+    }
+
+    /**
+     * @param object $command
+     * @throws \Upgate\LaravelCommandBus\Exception\HandlerNotFound
+     */
+    public function executeSync($command)
+    {
         if (!is_object($command)) {
             throw new \InvalidArgumentException("Command is expected to be an object");
         }
@@ -51,7 +60,7 @@ final class CommandBus
         }
         $handler = $this->handlersCache[$handlerClass];
 
-        $handler->handle($command);
+        return $handler->handle($command);
     }
 
 }

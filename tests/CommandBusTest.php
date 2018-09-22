@@ -24,6 +24,22 @@ class CommandBusTest extends TestCase
         $this->assertTrue($cmd->handled);
     }
 
+    public function testExecuteSync()
+    {
+        $resolver = $this->getMockBuilder(\Upgate\LaravelCommandBus\HandlerResolver::class)->getMock();
+        $resolver->method('getHandlerClass')->willReturn(CommandBusTestHandler::class);
+        /** @var \Upgate\LaravelCommandBus\HandlerResolver $resolver */
+
+        $container = $this->getMockBuilder(Container::class)->getMock();
+        $container->method('make')->with(CommandBusTestHandler::class)->willReturn(new CommandBusTestHandler());
+        /** @var Illuminate\Contracts\Container\Container $container */
+
+        $bus = new CommandBus($container, $resolver);
+        $cmd = new CommandBusTestCommand();
+        $this->assertEquals("result", $bus->executeSync($cmd));
+        $this->assertTrue($cmd->handled);
+    }
+
     public function testExceptionIsThrownIfHandlerHasNoHandleMethod()
     {
         $resolver = $this->getMockBuilder(\Upgate\LaravelCommandBus\HandlerResolver::class)->getMock();
@@ -89,6 +105,8 @@ class CommandBusTestHandler
     public function handle(CommandBusTestCommand $command)
     {
         $command->handled = true;
+
+        return "result";
     }
 
 }
