@@ -18,5 +18,12 @@
         "psr-4": {
             "Upgate\\LaravelCommandBus\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\Upgate\\LaravelCommandBus\\CommandBusServiceProvider"
+            ]
+        }
     }
 }
